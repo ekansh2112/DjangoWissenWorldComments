@@ -1,0 +1,45 @@
+<form action="{% url 'comment_create' %}" method="post">
+        <input type="text" class="pl-8 text-grey-dark font-light w-full text-sm font-medium tracking-wide border border-none" name="comment"  placeholder="Type your commnet...">
+        <input type="hidden" name="url" value={{request.build_absolute_uri}}>
+        <input type="hidden" name="parentsno" value="" >
+
+        <button type="submit" value="Submit" >Submit</button>
+        {% csrf_token %}
+      </form>
+
+
+
+<div><h2><b>Comments</b></h2></div>
+<div id="comments-container">
+
+  {% for l in   comment_from_processor   %}
+  {% if l.url == request.build_absolute_uri %}
+      
+      {{user.username}} {{l.cmnt}}     {% if l.user == user %}
+              <a href="{% url 'comment_delete' l.sno %}">Delete</a>
+            {% endif %}<br>
+
+
+
+<form action="{% url 'comment_create' %}" method="post">
+  <div>
+  <input type="text"  name="reply"  placeholder="Type your reply...">
+  <input type="hidden" name="parentsno" value={{l.sno}} >
+  <input type="hidden" name="url" value={{request.build_absolute_uri}}>
+  <input  type="submit" value="Reply" ></input>
+  </div>
+  
+        {% csrf_token %}
+      </form>
+
+  {% for r in   reply_from_processor   %}
+  {% if l.sno == r.parent.sno %}
+      {{user.username}} {{r.cmnt}}    {% if r.user == user %}
+              <a href="{% url 'comment_delete' r.sno %}">Delete</a>
+            {% endif %}<br>
+    {% endif %}
+   
+</div>
+{% endfor %}
+{% endif %}
+{% endfor %}

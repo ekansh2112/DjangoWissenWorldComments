@@ -1,0 +1,30 @@
+
+<section class="text-gray-700 body-font">
+  <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+    <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+      
+    </div>
+    <div class="lg:w-2/6 md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+      <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Confirmation</h2>
+      <div class="w-full max-w-xs">
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"method = 'post'>
+     
+    <div class="flex items-center">
+      <button class="bg-red-500 hover:bg-red-800 text-white font-bold p-1 m-1 rounded " type="submit">
+        Yes, Delete
+      </button>
+      <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 ml-2" href="{{cmntdel.url}}" target="_self">
+         <div class="m-2 p-2">
+         No, I don't want to delete!
+         </div>
+      </a>
+      
+    </div>
+    {% csrf_token %}
+  </form>
+  
+</div>
+      <p class="text-xs text-gray-500 mt-3">Delete</p>
+    </div>
+  </div>
+</section>
