@@ -1,0 +1,11 @@
+{% extends 'comments/comment_create.html' %}
+
+
+<div id="comments-container">
+
+  {% for l in   comment_from_processor   %}
+      {% comment %} <a href="{% url 'core:openleague' l.pk %}"><h2>{{ l.leagues }}</h2></a> {% endcomment %}
+      {{l.cmnt}}<br>
+  {% endfor %}
+
+</div>
